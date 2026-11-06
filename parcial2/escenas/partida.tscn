@@ -1,0 +1,29 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/partida.gd" id="1_partida"]
+[ext_resource type="Script" path="res://scripts/nivel.gd" id="2_nivel"]
+[ext_resource type="PackedScene" path="res://escenas/jugador.tscn" id="3_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/enemigo_tonto.tscn" id="4_tonto"]
+[ext_resource type="PackedScene" path="res://escenas/enemigo_inteligente.tscn" id="5_inteligente"]
+[ext_resource type="PackedScene" path="res://escenas/item.tscn" id="6_item"]
+[ext_resource type="PackedScene" path="res://escenas/meta.tscn" id="7_meta"]
+[ext_resource type="PackedScene" path="res://escenas/hud.tscn" id="8_hud"]
+
+[node name="Partida" type="Node2D"]
+script = ExtResource("1_partida")
+escena_jugador = ExtResource("3_jugador")
+escena_enemigo_tonto = ExtResource("4_tonto")
+escena_enemigo_inteligente = ExtResource("5_inteligente")
+escena_item = ExtResource("6_item")
+escena_meta = ExtResource("7_meta")
+
+[node name="Nivel" type="Node2D" parent="."]
+script = ExtResource("2_nivel")
+
+[node name="Personajes" type="Node2D" parent="."]
+z_index = 5
+
+[node name="Balas" type="Node2D" parent="."]
+z_index = 15
+
+[node name="HUD" parent="." instance=ExtResource("8_hud")]

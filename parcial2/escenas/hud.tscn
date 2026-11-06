@@ -1,0 +1,398 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://escenas/tabla_puntajes.tscn" id="2_tabla"]
+
+[sub_resource type="StyleBoxFlat" id="SB_fondo_barra"]
+bg_color = Color(0, 0, 0, 0.45)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="SB_relleno_barra"]
+bg_color = Color(0.35, 0.82, 0.42, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="SB_cartel_verde"]
+bg_color = Color(0.08, 0.09, 0.11, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.35, 0.9, 0.5, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_cartel_rojo"]
+bg_color = Color(0.08, 0.09, 0.11, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.96, 0.45, 0.13, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="SB_cartel_gris"]
+bg_color = Color(0.08, 0.09, 0.11, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.62, 0.68, 0.78, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Todo" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BarraVida" type="ProgressBar" parent="Todo"]
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 304.0
+offset_bottom = 54.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("SB_fondo_barra")
+theme_override_styles/fill = SubResource("SB_relleno_barra")
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="TextoVida" type="Label" parent="Todo/BarraVida"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 17
+text = "100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IconoArma" type="TextureRect" parent="Todo"]
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 96.0
+offset_bottom = 112.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextoArma" type="Label" parent="Todo"]
+offset_left = 104.0
+offset_top = 62.0
+offset_right = 420.0
+offset_bottom = 88.0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Pistola"
+vertical_alignment = 1
+
+[node name="TextoBalas" type="Label" parent="Todo"]
+offset_left = 104.0
+offset_top = 86.0
+offset_right = 420.0
+offset_bottom = 114.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.84, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "12 / 12"
+vertical_alignment = 1
+
+[node name="TextoNivel" type="Label" parent="Todo"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 22.0
+offset_right = -24.0
+offset_bottom = 52.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "Nivel  1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextoPuntaje" type="Label" parent="Todo"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 54.0
+offset_right = -24.0
+offset_bottom = 84.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "Puntaje  0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextoEnemigos" type="Label" parent="Todo"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 86.0
+offset_right = -24.0
+offset_bottom = 114.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.72, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Enemigos  0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextoMeta" type="Label" parent="Todo"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 116.0
+offset_right = -24.0
+offset_bottom = 144.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.45, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "META a 0 m"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Ayuda" type="Label" parent="Todo"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -46.0
+offset_right = 1000.0
+offset_bottom = -18.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.72)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 16
+text = "WASD mover   ·   Click disparar   ·   R recargar   ·   Espacio esquivar   ·   1/2/3 armas   ·   F3 ver estados   ·   Esc pausa"
+vertical_alignment = 1
+
+[node name="PantallaVictoria" type="Control" parent="Todo"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Oscuro" type="ColorRect" parent="Todo/PantallaVictoria"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62)
+
+[node name="Cartel" type="PanelContainer" parent="Todo/PantallaVictoria"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -180.0
+offset_right = 290.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("SB_cartel_verde")
+
+[node name="Margen" type="MarginContainer" parent="Todo/PantallaVictoria/Cartel"]
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 30
+
+[node name="Lista" type="VBoxContainer" parent="Todo/PantallaVictoria/Cartel/Margen"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Todo/PantallaVictoria/Cartel/Margen/Lista"]
+theme_override_colors/font_color = Color(0.4, 0.95, 0.55, 1)
+theme_override_font_sizes/font_size = 40
+text = "NIVEL COMPLETADO"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Texto" type="Label" parent="Todo/PantallaVictoria/Cartel/Margen/Lista"]
+theme_override_font_sizes/font_size = 20
+text = "Llegaste a la meta."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BotonSiguiente" type="Button" parent="Todo/PantallaVictoria/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 22
+text = "Siguiente nivel"
+
+[node name="BotonMenu" type="Button" parent="Todo/PantallaVictoria/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 46)
+theme_override_font_sizes/font_size = 19
+text = "Volver al menu"
+
+[node name="PantallaDerrota" type="Control" parent="Todo"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Oscuro" type="ColorRect" parent="Todo/PantallaDerrota"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.62)
+
+[node name="Cartel" type="PanelContainer" parent="Todo/PantallaDerrota"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -170.0
+offset_right = 290.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("SB_cartel_rojo")
+
+[node name="Margen" type="MarginContainer" parent="Todo/PantallaDerrota/Cartel"]
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 30
+
+[node name="Lista" type="VBoxContainer" parent="Todo/PantallaDerrota/Cartel/Margen"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Todo/PantallaDerrota/Cartel/Margen/Lista"]
+theme_override_colors/font_color = Color(0.96, 0.45, 0.13, 1)
+theme_override_font_sizes/font_size = 44
+text = "PERDISTE"
+horizontal_alignment = 1
+
+[node name="Texto" type="Label" parent="Todo/PantallaDerrota/Cartel/Margen/Lista"]
+theme_override_font_sizes/font_size = 20
+text = "Te mataron."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BotonReintentar" type="Button" parent="Todo/PantallaDerrota/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 22
+text = "Reintentar nivel  (Enter)"
+
+[node name="BotonMenu" type="Button" parent="Todo/PantallaDerrota/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 46)
+theme_override_font_sizes/font_size = 19
+text = "Volver al menu"
+
+[node name="PantallaPausa" type="Control" parent="Todo"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Oscuro" type="ColorRect" parent="Todo/PantallaPausa"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Cartel" type="PanelContainer" parent="Todo/PantallaPausa"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -150.0
+offset_right = 240.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("SB_cartel_gris")
+
+[node name="Margen" type="MarginContainer" parent="Todo/PantallaPausa/Cartel"]
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 28
+
+[node name="Lista" type="VBoxContainer" parent="Todo/PantallaPausa/Cartel/Margen"]
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Todo/PantallaPausa/Cartel/Margen/Lista"]
+theme_override_colors/font_color = Color(0.8, 0.86, 0.95, 1)
+theme_override_font_sizes/font_size = 38
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="BotonContinuar" type="Button" parent="Todo/PantallaPausa/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 52)
+theme_override_font_sizes/font_size = 22
+text = "Continuar  (Esc)"
+
+[node name="BotonReiniciar" type="Button" parent="Todo/PantallaPausa/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 46)
+theme_override_font_sizes/font_size = 19
+text = "Reiniciar nivel"
+
+[node name="BotonMenu" type="Button" parent="Todo/PantallaPausa/Cartel/Margen/Lista"]
+custom_minimum_size = Vector2(0, 46)
+theme_override_font_sizes/font_size = 19
+text = "Volver al menu"
+
+[node name="TablaPuntajes" parent="Todo" instance=ExtResource("2_tabla")]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 305.0
+offset_top = -170.0
+offset_right = 625.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2

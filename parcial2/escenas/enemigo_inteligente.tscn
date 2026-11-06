@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemigo_inteligente.gd" id="1_inteligente"]
+[ext_resource type="Texture2D" path="res://assets/zoimbie1_hold.png" id="2_sprite"]
+[ext_resource type="Script" path="res://scripts/estados/maquina_de_estados.gd" id="3_maquina"]
+[ext_resource type="Script" path="res://scripts/estados/enemigo_quieto.gd" id="4_quieto"]
+[ext_resource type="Script" path="res://scripts/estados/enemigo_perseguir.gd" id="5_perseguir"]
+[ext_resource type="Script" path="res://scripts/estados/enemigo_atacar.gd" id="6_atacar"]
+[ext_resource type="Script" path="res://scripts/estados/enemigo_muerto.gd" id="7_muerto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_inteligente"]
+radius = 14.0
+
+[node name="EnemigoInteligente" type="CharacterBody2D"]
+z_index = 8
+collision_layer = 4
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_inteligente")
+vida_maxima = 80
+velocidad = 130.0
+puntos_que_da = 25
+color_del_sprite = Color(1, 0.55, 0.55, 1)
+danio_de_golpe = 15
+distancia_para_pegar = 46.0
+espera_entre_golpes = 0.85
+distancia_para_despertar = 620.0
+velocidad_cuando_te_ve = 170.0
+
+[node name="Cuerpo" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Cuerpo"]
+texture = ExtResource("2_sprite")
+offset = Vector2(1, 0)
+scale = Vector2(1.12, 1.12)
+
+[node name="Colision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_inteligente")
+
+[node name="MaquinaDeEstados" type="Node" parent="."]
+script = ExtResource("3_maquina")
+
+[node name="Quieto" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("4_quieto")
+
+[node name="Perseguir" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("5_perseguir")
+
+[node name="Atacar" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("6_atacar")
+
+[node name="Muerto" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("7_muerto")
+
+[node name="Etiqueta" type="Label" parent="."]
+visible = false
+offset_left = -85.0
+offset_top = -50.0
+offset_right = 85.0
+offset_bottom = -28.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.62, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 13
+text = "Quieto"
+horizontal_alignment = 1
+vertical_alignment = 1

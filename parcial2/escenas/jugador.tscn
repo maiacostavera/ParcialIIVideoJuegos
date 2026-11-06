@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_jugador"]
+[ext_resource type="PackedScene" path="res://escenas/bala.tscn" id="2_bala"]
+[ext_resource type="Texture2D" path="res://assets/manBlue_gun.png" id="3_sprite"]
+[ext_resource type="Script" path="res://scripts/estados/maquina_de_estados.gd" id="4_maquina"]
+[ext_resource type="Script" path="res://scripts/estados/jugador_quieto.gd" id="5_quieto"]
+[ext_resource type="Script" path="res://scripts/estados/jugador_caminar.gd" id="6_caminar"]
+[ext_resource type="Script" path="res://scripts/estados/jugador_esquivar.gd" id="7_esquivar"]
+[ext_resource type="Script" path="res://scripts/estados/jugador_recargar.gd" id="8_recargar"]
+[ext_resource type="Script" path="res://scripts/estados/jugador_muerto.gd" id="9_muerto"]
+[ext_resource type="PackedScene" path="res://escenas/particulas_disparo.tscn" id="10_particulas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jugador"]
+radius = 14.0
+
+[node name="Jugador" type="CharacterBody2D"]
+z_index = 10
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_jugador")
+escena_bala = ExtResource("2_bala")
+escena_particulas_disparo = ExtResource("10_particulas")
+
+[node name="Cuerpo" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Cuerpo"]
+texture = ExtResource("3_sprite")
+offset = Vector2(8, 0)
+
+[node name="Canio" type="Marker2D" parent="Cuerpo"]
+position = Vector2(31, 10)
+
+[node name="Colision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jugador")
+
+[node name="Camara" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="MaquinaDeEstados" type="Node" parent="."]
+script = ExtResource("4_maquina")
+
+[node name="Quieto" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("5_quieto")
+
+[node name="Caminar" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("6_caminar")
+
+[node name="Esquivar" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("7_esquivar")
+
+[node name="Recargar" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("8_recargar")
+
+[node name="Muerto" type="Node" parent="MaquinaDeEstados"]
+script = ExtResource("9_muerto")
+
+[node name="Etiqueta" type="Label" parent="."]
+visible = false
+offset_left = -70.0
+offset_top = -72.0
+offset_right = 70.0
+offset_bottom = -50.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.62, 0.89, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.9)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 13
+text = "Quieto"
+horizontal_alignment = 1
+vertical_alignment = 1
